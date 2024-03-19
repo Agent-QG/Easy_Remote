@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Control PC with Image Click</title>
+</head>
+<body>
+    <img src="/static/reinforce.png" alt="Control Icon 1" style="cursor:pointer;" onclick="sendRequest(1, 'audio1')"/>
+    <audio id="audio1" src="/static/reinforce.mp3"></audio>
+
+    <img src="/static/eagle_airstrike.png" alt="Control Icon 2" style="cursor:pointer;" onclick="sendRequest(2, 'audio2')"/>
+    <audio id="audio2" src="/static/eagle_airstrike.mp3"></audio>
+
+    <img src="/static/machine_gun.png" alt="Control Icon 3" style="cursor:pointer;" onclick="sendRequest(3, 'audio3')"/>
+    <audio id="audio3" src="/static/machine_gun.mp3"></audio>
+
+    <img src="/static/rover_dog.png" alt="Control Icon 4" style="cursor:pointer;" onclick="sendRequest(4, 'audio4')"/>
+    <audio id="audio4" src="/static/supply_pack.mp3"></audio>
+
+    <script>
+    function sendRequest(buttonId, audioId) {
+        document.getElementById(audioId).play();
+
+        fetch(`/press-keys/${buttonId}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
+</body>
+</html>
